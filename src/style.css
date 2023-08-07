@@ -1,0 +1,113 @@
+/* CSS Reset */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Angkor&family=Anton&family=Borel&family=Montserrat:wght@200&display=swap');
+/* Layout */
+
+body {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url(../assets/bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #f5f5f5;
+    font-family: montserrat, sans-serif;
+    height: 100vh;
+}
+.mainContainer1, .dataShow {
+    display: flex;
+    justify-content: space-between;
+}
+.dataComponents {
+    display: flex;
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------- */
+
+.rightData, .leftData {
+    width: 400px;
+    color: #fff;
+    margin-left: 90px;
+    margin-top: 90px;
+}
+.search-box {
+    margin-top: 1rem;
+    height: 30px;
+    max-width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #f5f5f5;
+    padding: 6px 12px;
+    background-color: transparent;
+}
+.search-box-input {
+    height: 100%;
+    flex-shrink: 2;
+    max-width: 150px;
+    background-color: transparent;
+    border: none;
+    color: color-text;
+    font-size: 12px;
+    font-weight: 600;
+    color: #f5f5f5;
+}
+.search {
+    height: 18px;
+    min-width: 18px;  
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    font-size: 20px;
+    overflow: visible;
+    color: white;
+}
+#sky {
+    font-size: 42px;
+}
+#city {
+    font-size: 24px;
+}
+#temperature {
+    font-size: 52px;
+}
+#icon {
+    width: 150px;
+    height: 150px;
+    color: #fff;
+}
+.iconLeft {
+    font-size: 50px;
+    display: flex;
+    margin-right: 25px;
+    margin-bottom: 45px;
+    justify-content: center;
+}
+.dataInfo {
+    font-size: 35px;
+    font-weight: bold;
+}
+

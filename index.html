@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./src/style.css">
 </head>
 <body>
     <div class="mainContainer1">
@@ -14,39 +14,39 @@
             <p id="date">Thursday, 3rd Aug '23</p>
             <h1 id="temperature">13°C</h1>
             <p id="convert">display °F</p>
-            <i id="icon" class="fa-solid fa-sun"></i>
-            <div>
-                <input type="text" placeholder="Search Location..."> 
-                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            <img src="./assets/icons8-sun.svg" alt="A sun" id="icon">
+            <div class="search-box">
+                <input class="search-box-input" type="text" placeholder="Search Location..."> 
+                <button class="search" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
         </div>
         <div class="leftData">
             <div class="dataComponents">
-                <i class="fa-solid fa-temperature-high fa-solid-left"></i>
+                <i class="fa-solid fa-temperature-high fa-solid-left iconLeft"></i>
                 <div>
                     <div>Feels Like</div>
-                    <div>12°C</div>
+                    <div class="dataInfo">12°C</div>
                 </div>
             </div>
             <div class="dataComponents">
-                <i class="fa-solid fa-water fa-solid-left"></i>
+                <i class="fa-solid fa-water fa-solid-left iconLeft"></i>
                 <div>
                     <div>Humidity</div>
-                    <div>73 %</div>
+                    <div class="dataInfo">73 %</div>
                 </div>
             </div>
             <div class="dataComponents">
-                <i class="fa-solid fa-cloud-rain fa-solid-left"></i>
+                <i class="fa-solid fa-cloud-rain fa-solid-left iconLeft"></i>
                 <div>
                     <div>Chance of Rain</div>
-                    <div>47 %</div>
+                    <div class="dataInfo">47 %</div>
                 </div>
             </div>
             <div class="dataComponents">
-                <i class="fa-solid fa-wind fa-solid-left"></i>
+                <i class="fa-solid fa-wind fa-solid-left iconLeft"></i>
                 <div>
                     <div>Wind Speed</div>
-                    <div>16.7 km/h</div>
+                    <div class="dataInfo">16.7 km/h</div>
                 </div>
             </div>
         </div> 
@@ -54,7 +54,7 @@
     <div class="mainContainer2">
         <div class="btnsMenu">
             <button id="dailyBtn">Daily</button>
-            <button id="HourlyBtn">Hourly</button>
+            <button id="HourlyBtn">Hourly</button> 
         </div>
         <div class="dataShow">
             <div class="dataContainer">
@@ -102,6 +102,6 @@
         </div>
     </div>
     <script src="https://kit.fontawesome.com/6c0df03ae3.js" crossorigin="anonymous"></script>
-    <script src="./script.js"></script>
+    <script src="./src/script.js"></script>
 </body>
 </html>
