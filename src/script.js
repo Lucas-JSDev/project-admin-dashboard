@@ -34,7 +34,6 @@ function updateWeather(city) {
        document.querySelector(elements.windSpeed).textContent = data.current.wind_kph + " Km/h";
        document.querySelector(elements.icon).src = data.current.condition.icon;
        document.querySelector(elements.input).value = "";
-       console.log(data)
    })
 }
 

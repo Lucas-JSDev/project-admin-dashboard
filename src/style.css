@@ -110,4 +110,36 @@ body {
     font-size: 35px;
     font-weight: bold;
 }
+.btnsMenu {
+    margin-left: 90px;
+}
+#dailyBtn, #hourlyBtn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-right: 2rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 5px 15px 5px 15px;
+}
+#dailyBtn {
+    border: 1px solid #fff;
+}
 
+.dataShow {
+    margin: 30px 90px 90px 90px;
+}
+.days {
+    font-size: 22px;
+}
+.tempMax {
+    font-size: 32px;
+    font-weight: bold;
+}
+.tempMin {
+    font-size: 16px;
+}
+.iconBottom {
+    font-size: 30px;
+}
