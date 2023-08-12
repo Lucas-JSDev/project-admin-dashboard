@@ -21,10 +21,18 @@ const elements = {
    dailyBtn: "#dailyBtn"
 }
 
+const state = {
+   currentCity: "boquim",
+   weatherData: {},
+};
+
 function displayDefaultCity () {
-   const defaultCity = 'boquim';
-   const weatherData = getWeather (defaultCity);
-   weatherData.then(updateWeather)
+   const weatherData = getWeather (state.currentCity);
+   weatherData.then((data)=>{
+      state.weatherData[state.currentCity] = data;
+      updateWeather(data);
+      updateWeatherBreakdown(data.forecast.forecastday, getDayForecastElement);
+   })
 }
 
 window.addEventListener("load", displayDefaultCity);
@@ -40,31 +48,21 @@ document.querySelector(elements.rigthMenu.formSearch).addEventListener("submit",
    e.preventDefault();
    const cityInput = document.querySelector(elements.rigthMenu.input).value;
    const weatherData = getWeather (cityInput);
-   weatherData.then(updateDayWeather);
+   weatherData.then((data)=>{
+      state.currentCity = cityInput;
+      state.weatherData[state.currentCity] = data;
+      updateWeather(data);
+      updateWeatherBreakdown(data.forecast.forecastday, getDayForecastElement);
+   });
 });
 
 document.querySelector(elements.hourlyBtn).addEventListener("click", function() {
-   const cityInput = document.querySelector(elements.rigthMenu.input).value;
-   const weatherData = getWeather(cityInput);
-   weatherData.then(updateHourlyWeather);
+   updateWeatherBreakdown(state.weatherData[state.currentCity].forecast.forecastday[0].hour, getHourForecastElement)
 });
 
 document.querySelector(elements.dailyBtn).addEventListener("click", function() {
-   const cityInput = document.querySelector(elements.rigthMenu.input).value;
-   const weatherData = getWeather(cityInput);
-   weatherData.then(updateDayWeather);
+   updateWeatherBreakdown(state.weatherData[state.currentCity].forecast.forecastday, getDayForecastElement)
 });
-
-function displayDefaultCity() {
-   const defaultCity = 'boquim';
-   const weatherData = getWeather(defaultCity);
-   weatherData.then(updateDayWeather);
-}
-
-function displayHourlyForecast(city) {
-   const weatherData = getWeather(city);
-   weatherData.then(updateHourlyWeather);
-}
 
 function transformDateOnDay (date){
    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -72,9 +70,7 @@ function transformDateOnDay (date){
    return daysOfWeek[day];
 }
 
-getWeather('boquim').then((data)=> console.log(data))
-
-function updateDayWeather (data) {
+function updateWeather (data) {
    document.querySelector(elements.rigthMenu.sky).textContent = data.current.condition.text;
    document.querySelector(elements.rigthMenu.city).textContent = data.location.name;
    document.querySelector(elements.rigthMenu.region).textContent = data.location.region;
@@ -85,37 +81,17 @@ function updateDayWeather (data) {
    document.querySelector(elements.leftMenu.windSpeed).textContent = data.current.wind_kph + " Km/h";
    document.querySelector(elements.rigthMenu.icon).src = data.current.condition.icon;
    document.querySelector(elements.rigthMenu.input).value = "";
-   const breakdownContainer = document.querySelector(elements.breakdownContainer);
-   while (breakdownContainer.firstChild) {
-      breakdownContainer.removeChild(breakdownContainer.firstChild);
-   }
-
-   data.forecast.forecastday.forEach((dayForecast) => {
-      const element = getDayForecastElement(dayForecast);
-      document.querySelector(elements.breakdownContainer).appendChild(element);
-   });
 }
 
-function updateHourlyWeather(data) {
-   document.querySelector(elements.rigthMenu.sky).textContent = data.current.condition.text;
-   document.querySelector(elements.rigthMenu.city).textContent = data.location.name;
-   document.querySelector(elements.rigthMenu.region).textContent = data.location.region;
-   document.querySelector(elements.rigthMenu.temperature).textContent = data.current.temp_c + "°C";
-   document.querySelector(elements.leftMenu.feelsLike).textContent = data.current.feelslike_c + "°C";
-   document.querySelector(elements.leftMenu.humidity).textContent = data.current.humidity + "%";
-   document.querySelector(elements.leftMenu.chanceOfRain).textContent = data.current.precip_mm + " mm";
-   document.querySelector(elements.leftMenu.windSpeed).textContent = data.current.wind_kph + " Km/h";
-   document.querySelector(elements.rigthMenu.icon).src = data.current.condition.icon;
-   document.querySelector(elements.rigthMenu.input).value = "";
-   
+function updateWeatherBreakdown (elementList, getElementTemplate) {
    const breakdownContainer = document.querySelector(elements.breakdownContainer);
    while (breakdownContainer.firstChild) {
       breakdownContainer.removeChild(breakdownContainer.firstChild);
    }
-   
-   data.forecast.forecastday[0].hour.forEach((hourForecast) => {
-      const element = getHourForecastElement(hourForecast);
-      document.querySelector(elements.breakdownContainer).appendChild(element);
+
+   elementList.forEach((elementData) => {
+      const element = getElementTemplate(elementData);
+      breakdownContainer.appendChild(element);
    });
 }
 
